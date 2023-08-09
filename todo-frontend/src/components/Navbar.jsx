@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import SendResetPasswordLink from "./SendResetPasswordLink";
 
 export default function Navbar() {
     const useContextAPI = useContext(AuthContext);
@@ -21,13 +22,36 @@ export default function Navbar() {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
-                       {state.user && <li className="nav-item">
+                        {state.user && <li className="nav-item">
                             <Link className="nav-link" to="/todo">Todo-List</Link>
                         </li>}
-                       {state.user && <li className="nav-item">
+                        {state.user && <li className="nav-item">
                             <Link className="nav-link" to="/addtodo">Add-Todo</Link>
                         </li>}
                     </ul>
+
+                    {/* <!-- Send Reset link Button trigger modal --> */}
+                    {!state.user && <button type="button" className="btn btn-secondary mx-2" data-bs-toggle="modal" data-bs-target="#resetLink">
+                        Forgot password!
+                    </button>}
+
+                    {/* <!-- Send Reset link Modal --> */}
+                    <div className="modal fade fc" id="resetLink" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="loginModalLabel">Login</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+
+                                    <SendResetPasswordLink />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* <!-- Login Button trigger modal --> */}
                     {!state.user && <button type="button" className="btn btn-secondary mx-2" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Login

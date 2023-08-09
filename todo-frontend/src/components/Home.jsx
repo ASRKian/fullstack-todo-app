@@ -11,7 +11,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const useContextAPI = useContext(AuthContext);
     const state = useSelector(state => state.user)
-    const [getDetails, { isError, isSuccess }] = useLazyGetDetailsQuery()
+    const [getDetails, { isError, isSuccess, isLoading }] = useLazyGetDetailsQuery()
     const [userData, setUserData] = useState()
 
     const details = async () => {
@@ -31,7 +31,7 @@ export default function Home() {
             <img className="d-block mx-auto mb-3" src={todo} alt="" width="200px" height="200px" />
             <h1 className="display-5 fw-bold text-body-emphasis">Todo Web App</h1>
             <div className="col-lg-6 mx-auto">
-                {isSuccess && !state.user ? <p className="lead mb-4">Now there is no need to remember your daily task all the time, just register and start adding your daily task list and all set!</p> : <h3>Welcome: {userData?.name}</h3>}
+                {!isLoading && !state.user ? <p className="lead mb-4">Now there is no need to remember your daily task all the time, just register and start adding your daily task list and all set!</p> : <h3>Welcome: {userData?.name}</h3>}
             </div>
         </div>
     )

@@ -11,6 +11,8 @@ import { AuthContext } from './Context/ContextAPI'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
+import ChangePassword from './components/ChangePassword'
+import Loading from './components/Loading'
 
 function App() {
   const [patchTodo, { isError, isSuccess }] = usePatchTodoMutation()
@@ -60,6 +62,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/todo' element={<TodoBox count={count} />} />
         <Route path='/addtodo' element={<CreateInput />} />
+        <Route path='/user/reset/:uid/:token' element={<Loading />} />
+        <Route path='/reset-password' element={<ChangePassword />} />
       </Routes>
       <ToastContainer />
     </DragDropContext>}

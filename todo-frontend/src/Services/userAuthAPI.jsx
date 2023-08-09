@@ -42,6 +42,30 @@ export const userAuthAPI = createApi({
                 }
             }
         }),
+        sendResetPasswordLink: builder.mutation({
+            query: (email) => {
+                return {
+                    url: 'send-reset-password-email/',
+                    method: 'POST',
+                    body: email,
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }
+            }
+        }),
+        resetPassword: builder.mutation({
+            query: ({ body, uid, token }) => {
+                return {
+                    url: `reset-password/${uid}/${token}/`,
+                    method: 'POST',
+                    body,
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }
+            }
+        }),
         getTodos: builder.query({
             query: (access_token) => {
                 return {
@@ -92,7 +116,7 @@ export const userAuthAPI = createApi({
             }
         }),
         deleteTodo: builder.mutation({
-            query: ({access_token, id}) => {
+            query: ({ access_token, id }) => {
                 return {
                     url: `todos/${id}/`,
                     method: 'DELETE',
@@ -101,8 +125,8 @@ export const userAuthAPI = createApi({
                     }
                 }
             }
-        })
+        }),
     }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useRefreshTokenMutation, useLazyGetTodosQuery, useCreateTodoMutation, usePatchTodoMutation, useLazyGetDetailsQuery, useDeleteTodoMutation } = userAuthAPI
+export const { useRegisterUserMutation, useLoginUserMutation, useRefreshTokenMutation, useSendResetPasswordLinkMutation, useResetPasswordMutation, useLazyGetTodosQuery, useCreateTodoMutation, usePatchTodoMutation, useLazyGetDetailsQuery, useDeleteTodoMutation } = userAuthAPI

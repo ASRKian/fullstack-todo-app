@@ -22,7 +22,6 @@ export default function Login() {
                 password: data.get('password')
             }
             const response = await loginUser(actualData);
-            console.log(response);
             if (response.data?.msg === 'Login success') {
                 const { access, refresh } = response.data.token;
                 toast.success('Logged In successfully!', {
@@ -59,7 +58,7 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="uEmail" className="form-label">Email address</label>
-                <input type="email" className="form-control" name="uEmail" id="uemail" aria-describedby="email" required />
+                <input type="email" className="form-control" name="uEmail" id="uEmail" aria-describedby="email" required />
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
