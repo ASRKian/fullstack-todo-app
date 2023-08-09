@@ -1,0 +1,7 @@
+.fc {
+    color: rgba(var(--bs-light-rgb), .5);
+}
+
+.pointer {
+    cursor: pointer;
+}
